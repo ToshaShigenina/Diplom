@@ -1,0 +1,14 @@
+{
+  "name": "diplom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antonina Shigenina",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^4.42.0"
+  }
+}
