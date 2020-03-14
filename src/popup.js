@@ -8,12 +8,18 @@ const popup = () => {
     if (!popup) {
       target = target.closest('[data-popup]');
       event.preventDefault();
+      if (target.dataset.popup === '#gift') {
+        target.style.display = 'none';
+      }
       popup = document.querySelector(target.dataset.popup);
       popup.style.display = 'block';
       return;
     }
 
-    if (target.closest('.close_icon') || !target.closest('.form-content')) {
+    if (target.closest('.close_icon') || target.closest('.close-btn') || !target.closest('.form-content')) {
+      if (popup.id === 'gift') {
+        document.querySelector('[data-popup="#gift"]').removeAttribute('style');
+      }
       popup.removeAttribute('style');
       popup = null;
     }
