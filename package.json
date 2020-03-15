@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "webpack --watch",
     "dev": "webpack-dev-server --open --node=development",
-    "run": "webpack --mode=production"
+    "build": "webpack --mode=production"
   },
   "author": "Antonina Shigenina",
   "license": "ISC",
