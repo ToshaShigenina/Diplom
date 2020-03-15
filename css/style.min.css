@@ -1335,7 +1335,18 @@ nav.popup-menu .close-menu-btn img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 100%
+  height: 100%;
+  display: none;
+}
+
+
+.slide-active {
+  display: -moz-flex !important;
+  display: -ms-flex !important;
+  display: -o-flex !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
 }
 
 .main-slider .slide .slide-text {
