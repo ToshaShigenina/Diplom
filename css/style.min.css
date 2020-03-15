@@ -87,14 +87,14 @@ summary {
 
 html {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box
+  box-sizing: border-box
 }
 
 *,
 *:before,
 *:after {
   -webkit-box-sizing: inherit;
-          box-sizing: inherit
+  box-sizing: inherit
 }
 
 img,
@@ -843,52 +843,52 @@ html#schelkovo .advantages .wrapper {
 
 .fixed-gift img {
   -webkit-animation-name: pulse;
-          animation-name: pulse;
+  animation-name: pulse;
   -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  animation-duration: 1s;
   -webkit-animation-fill-mode: both;
-          animation-fill-mode: both;
+  animation-fill-mode: both;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite
+  animation-iteration-count: infinite
 }
 
 @-webkit-keyframes pulse {
   from {
     -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1)
+    transform: scale3d(1, 1, 1)
   }
 
   50% {
     -webkit-transform: scale3d(1.05, 1.05, 1.05);
-            transform: scale3d(1.05, 1.05, 1.05)
+    transform: scale3d(1.05, 1.05, 1.05)
   }
 
   to {
     -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1)
+    transform: scale3d(1, 1, 1)
   }
 }
 
 @keyframes pulse {
   from {
     -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1)
+    transform: scale3d(1, 1, 1)
   }
 
   50% {
     -webkit-transform: scale3d(1.05, 1.05, 1.05);
-            transform: scale3d(1.05, 1.05, 1.05)
+    transform: scale3d(1.05, 1.05, 1.05)
   }
 
   to {
     -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1)
+    transform: scale3d(1, 1, 1)
   }
 }
 
 .pulse {
   -webkit-animation-name: pulse;
-          animation-name: pulse
+  animation-name: pulse
 }
 
 html,
@@ -1226,8 +1226,8 @@ nav.popup-menu {
   display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   position: fixed;
   background-color: #000;
   background-image: -webkit-gradient(linear, left top, right top, from(#230a16), to(#0c0b15));
@@ -1822,11 +1822,11 @@ nav.popup-menu .close-menu-btn img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between
+  -ms-flex-pack: justify;
+  justify-content: space-between
 }
 
 #card_order .price input {
@@ -2094,7 +2094,6 @@ footer .footer-bottom .right .socials .social-icon:hover a {
   z-index: 200;
   font-size: 28px;
   color: #1e1c34;
-  display: block;
   width: 35px;
   height: 35px;
   background-color: #ffd11a;
@@ -2153,11 +2152,11 @@ footer .footer-bottom .right .socials .social-icon:hover a {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   text-align: center;
   z-index: 1210;
   width: 340px;
