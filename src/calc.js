@@ -24,21 +24,21 @@ const calc = () => {
     let target = event.target;
     const promo = cardOrder.querySelector('[name="name"]');
 
-    if (target.matches('[name="club-name"]')) {
-      club = target.value;
-    }
-    if (target.matches('[name="card-type"]')) {
-      month = target.value;
-    }
-
-    if (promo.value !== '' || promo === target) {
-      if (promo.value === 'ТЕЛО2019') {
-        priceTotal.textContent = Math.floor((price[club][month] / 100) * 70);
-        return;
+    if (priceTotal) {
+      if (target.matches('[name="club-name"]')) {
+        club = target.value;
       }
+      if (target.matches('[name="card-type"]')) {
+        month = target.value;
+      }
+      if (promo.value !== '' || promo === target) {
+        if (promo.value === 'ТЕЛО2019') {
+          priceTotal.textContent = Math.floor((price[club][month] / 100) * 70);
+          return;
+        }
+      }
+      priceTotal.textContent = price[club][month];
     }
-
-    priceTotal.textContent = price[club][month];
   };
 
   cardOrder.addEventListener('change', calcPrice);
