@@ -1,34 +1,33 @@
 const slider = () => {
   const sliderMain = document.querySelector('.main-slider'),
-    slides = sliderMain.querySelectorAll('.slide');
+    slidesMain = sliderMain.querySelectorAll('.slide'),
+    sliderGallery = document.querySelector('.gallery-slider'),
+    slidesGallery = sliderGallery.querySelectorAll('.slide');
 
-  let currentSlide = 0;
+  let currentSlideMain = 0,
+    currentSlideGallery = 0;
 
 
-  const addDots = () => {
-    const ul = document.createElement('ul');
-    ul.classList.add('slider-dots');
-    for (let i = 0; i < slides.length; i++) {
-      const li = document.createElement('li');
-      li.innerHTML = `<button></button>`;
-      if (i === currentSlide) {
-        li.classList.add('slick-active');
+  const addDots = (slider, slides, currentSlide) => {
+      const ul = document.createElement('ul');
+      ul.classList.add('slider-dots');
+      for (let i = 0; i < slides.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `<button></button>`;
+        if (i === currentSlide) {
+          li.classList.add('slick-active');
+        }
+        ul.append(li);
       }
-      ul.append(li);
-    }
-    sliderMain.append(ul);
-  };
-  addDots();
-
-  const dots = document.querySelectorAll('.slider-dots li');
-
-  const prevSlide = (elem, index, classStr) => {
+      slider.append(ul);
+    },
+    prevSlide = (elem, index, classStr) => {
       elem[index].classList.remove(classStr);
     },
     nextSlide = (elem, index, classStr) => {
       elem[index].classList.add(classStr);
     },
-    playSlide = () => {
+    playSlide = (slides, dots, currentSlide) => {
       prevSlide(slides, currentSlide, 'slide-active');
       prevSlide(dots, currentSlide, 'slick-active');
       currentSlide++;
@@ -37,28 +36,44 @@ const slider = () => {
       }
       nextSlide(slides, currentSlide, 'slide-active');
       nextSlide(dots, currentSlide, 'slick-active');
+      return currentSlide;
     },
-    startSlider = () => {
-      setInterval(playSlide, 2500);
+    startSlider = (slides, dots, currentSlide) => {
+      setInterval(playSlide, 2500, slides, dots, currentSlide);
+    },
+    changeDots = (event, slides, dots, currentSlide) => {
+      event.preventDefault();
+      let target = event.target.closest('.slider-dots li');
+      if (target) {
+        prevSlide(slides, currentSlide, 'slide-active');
+        prevSlide(dots, currentSlide, 'slick-active');
+        dots.forEach((elem, index) => {
+          if (elem === target) {
+            currentSlide = index;
+          }
+        });
+        nextSlide(slides, currentSlide, 'slide-active');
+        nextSlide(dots, currentSlide, 'slick-active');
+      }
+      return currentSlide;
     };
 
+  addDots(sliderMain, slidesMain, currentSlideMain);
+  addDots(sliderGallery, slidesGallery, currentSlideGallery);
+
+  const dotsMain = sliderMain.querySelectorAll('.slider-dots li'),
+    dotsGallery = sliderGallery.querySelectorAll('.slider-dots li');
+
   sliderMain.addEventListener('click', (event) => {
-    event.preventDefault();
-    let target = event.target.closest('.slider-dots li');
-    if (target) {
-      prevSlide(slides, currentSlide, 'slide-active');
-      prevSlide(dots, currentSlide, 'slick-active');
-      dots.forEach((elem, index) => {
-        if (elem === target) {
-          currentSlide = index;
-        }
-      });
-      nextSlide(slides, currentSlide, 'slide-active');
-      nextSlide(dots, currentSlide, 'slick-active');
-    }
+    changeDots(event, slidesMain, dotsMain, currentSlideMain);
   });
 
-  startSlider();
+  sliderGallery.addEventListener('click', (event) => {
+    changeDots(event, slidesGallery, dotsGallery, currentSlideGallery);
+  });
+
+  startSlider(slidesMain, dotsMain, currentSlideMain);
+  startSlider(slidesGallery, dotsGallery, currentSlideGallery);
 };
 
 export default slider;
