@@ -50,7 +50,6 @@ const burgerMenu = () => {
 
   window.addEventListener('resize', () => {
     widthWindow = body.clientWidth;
-    console.log(widthWindow);
     doBurger();
   });
 
