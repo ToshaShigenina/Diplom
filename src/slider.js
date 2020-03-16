@@ -27,6 +27,16 @@ const slider = () => {
       }
       slider.append(ul);
     },
+    addArrows = (slider) => {
+      const arrowNext = document.createElement('div'),
+        arrowPrev = document.createElement('div');
+      arrowNext.classList.add('slider-arrow', 'next');
+      arrowPrev.classList.add('slider-arrow', 'prev');
+      arrowNext.innerHTML = `<span><i class="fa fa-chevron-right"></i></span>`;
+      arrowPrev.innerHTML = `<span><i class="fa fa-chevron-left"></i></span>`;
+      slider.append(arrowNext);
+      slider.append(arrowPrev);
+    },
     prevSlide = (elem, index, classStr) => {
       elem[index].classList.remove(classStr);
     },
@@ -47,18 +57,32 @@ const slider = () => {
     startSlider = (slides, dots) => {
       setInterval(playSlide, 2500, slides, dots);
     },
-    changeDots = (event, slides, dots) => {
+    changeSlide = (event, slides, dots) => {
       event.preventDefault();
       let indexActive = currentSlide(slides);
-      let target = event.target.closest('.slider-dots li');
+      let target = event.target.closest('.slider-dots li') || event.target.closest('.slider-arrow');
       if (target) {
         prevSlide(slides, indexActive, 'slide-active');
         prevSlide(dots, indexActive, 'slick-active');
-        dots.forEach((elem, index) => {
-          if (elem === target) {
-            indexActive = index;
-          }
-        });
+
+        if (target.matches('.next')) {
+          indexActive++;
+        } else if (target.matches('.prev')) {
+          indexActive--;
+        } else {
+          dots.forEach((elem, index) => {
+            if (elem === target) {
+              indexActive = index;
+            }
+          });
+        }
+
+        if (indexActive >= slides.length) {
+          indexActive = 0;
+        }
+        if (indexActive < 0) {
+          indexActive = slides.length - 1;
+        }
         nextSlide(slides, indexActive, 'slide-active');
         nextSlide(dots, indexActive, 'slick-active');
       }
@@ -66,16 +90,17 @@ const slider = () => {
 
   addDots(sliderMain, slidesMain);
   addDots(sliderGallery, slidesGallery);
+  addArrows(sliderGallery);
 
   const dotsMain = sliderMain.querySelectorAll('.slider-dots li'),
     dotsGallery = sliderGallery.querySelectorAll('.slider-dots li');
 
   sliderMain.addEventListener('click', (event) => {
-    changeDots(event, slidesMain, dotsMain);
+    changeSlide(event, slidesMain, dotsMain);
   });
 
   sliderGallery.addEventListener('click', (event) => {
-    changeDots(event, slidesGallery, dotsGallery);
+    changeSlide(event, slidesGallery, dotsGallery);
   });
 
   startSlider(slidesMain, dotsMain);
