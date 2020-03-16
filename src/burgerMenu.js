@@ -32,13 +32,17 @@ const burgerMenu = () => {
           menu.style.position = 'fixed';
           menu.style.top = '0';
           menu.style.left = '0';
-          gift.style.top = '70px';
+          if (gift) {
+            gift.style.top = '70px';
+          }
           return;
         }
       }
 
       menu.removeAttribute('style');
-      gift.removeAttribute('style');
+      if (gift) {
+        gift.removeAttribute('style');
+      }
     });
   };
 
