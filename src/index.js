@@ -6,6 +6,7 @@ import burgerMenu from './burgerMenu.js';
 import totop from './totop.js';
 import slider from './slider.js';
 import calc from './calc.js';
+import mainForm from './mainForm.js';
 
 showClubList();
 
@@ -18,3 +19,5 @@ totop();
 slider();
 
 calc();
+
+mainForm();
