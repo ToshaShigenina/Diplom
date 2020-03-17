@@ -1,5 +1,6 @@
 const mainForm = () => {
-  const bannerForm = document.getElementById('banner-form');
+  const bannerForm = document.getElementById('banner-form'),
+    thanks = document.getElementById('thanks');
 
   const error = document.createElement('p');
   error.style.cssText = `color: red; margin-top: 1rem; font-size: 110%; text-align: center`;
@@ -35,25 +36,16 @@ const mainForm = () => {
 
       postData(body)
         .then((response) => {
-          const thanks = document.getElementById('thanks'),
-            gift = document.querySelector('[data-popup="#gift"]');
-          thanks.style.display = 'block';
-          if (gift) {
-            gift.style.display = 'none';
-          }
-          if (response !== 200) {
+          thanks.querySelector('h4').textContent = 'Подождите';
+          thanks.querySelector('p').innerHTML = '';
+          if (response.status !== 200) {
             thanks.querySelector('h4').textContent = 'Сожалеем';
-            thanks.querySelector('p').textContent = 'Произошла ошибка при отправке данных';
+            thanks.querySelector('p').innerHTML = 'Произошла ошибка при отправке данных';
+          } else {
+            thanks.querySelector('h4').textContent = 'Спасибо!';
+            thanks.querySelector('p').innerHTML = 'Ваша заявка отправлена. <br> Мы свяжемся с вами в ближайшее время.';
           }
-          thanks.addEventListener('click', (event) => {
-            let target = event.target;
-            if (target.matches('.close_icon') || target.matches('.close-btn') || !target.matches('.form-content')) {
-              thanks.removeAttribute('style');
-              if (gift) {
-                gift.style.display = 'block';
-              }
-            }
-          });
+          thanks.querySelector('button').style.display = 'block';
         });
       clearInput(form);
     };;
