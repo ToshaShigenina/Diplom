@@ -1,6 +1,7 @@
 const popup = () => {
   const body = document.body;
-  let popup = null;
+  let popup = null,
+    gift = true;
 
   body.addEventListener('click', (event) => {
     let target = event.target;
@@ -19,8 +20,10 @@ const popup = () => {
     }
 
     if (target.closest('.close_icon') || target.closest('.close-btn') || !target.closest('.form-content')) {
-      if (document.querySelector('[data-popup="#gift"]')) {
+      if (gift && document.querySelector('[data-popup="#gift"]') && popup !== document.getElementById('gift')) {
         document.querySelector('[data-popup="#gift"]').removeAttribute('style');
+      } else if (popup === document.getElementById('gift')) {
+        gift = false;
       }
       popup.removeAttribute('style');
       popup = null;
