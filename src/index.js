@@ -7,6 +7,7 @@ import totop from './totop.js';
 import slider from './slider.js';
 import calc from './calc.js';
 import mainForm from './mainForm.js';
+import checkInput from './checkInput.js';
 
 showClubList();
 
@@ -21,3 +22,5 @@ slider();
 calc();
 
 mainForm();
+
+checkInput();
