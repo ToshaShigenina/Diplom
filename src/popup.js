@@ -8,7 +8,12 @@ const popup = () => {
     if (!popup) {
       target = target.closest('[data-popup]');
       if (target) {
-        event.preventDefault();
+        if (target.dataset.popup === '#thanks' && target === document.querySelector('#banner-form button[name="send"]') && !document.getElementById('check1').checked) {
+          return;
+        }
+        if (!target.matches('[type="submit"]')) {
+          event.preventDefault();
+        }
         if (document.querySelector('[data-popup="#gift"]')) {
           document.querySelector('[data-popup="#gift"]').style.display = 'none';
         }

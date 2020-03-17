@@ -52,7 +52,6 @@ const burgerMenu = () => {
     widthWindow = body.clientWidth;
     doBurger();
   });
-
 };
 
 export default burgerMenu;
