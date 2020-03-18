@@ -2306,11 +2306,6 @@ p.personal-data input[type=checkbox]:checked + label:before {
   background-color: #fff
 }
 
-/*#free_visit_form .form-content > p,
-#callback_form .form-content > p {
-  margin-bottom: 140px;
-}*/
-
 #thanks .form-content p,
 #free_visit_form .form-content > p,
 #callback_form .form-content > p {
