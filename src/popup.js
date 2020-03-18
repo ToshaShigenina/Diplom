@@ -9,17 +9,19 @@ const popup = () => {
       target = target.closest('[data-popup]');
       if (target) {
         if (target.dataset.popup === '#thanks') {
-          if (target === document.querySelector('#banner-form button[type="submit"]') &&
-            !document.getElementById('check1').checked &&
-            (document.querySelector('#banner-form [type="tel"]').value === '' ||
-              document.querySelector('#banner-form [type="text"]').value === '')) {
-            return;
+          if (target === document.querySelector('#banner-form button[type="submit"]')) {
+            if (!document.getElementById('check1').checked ||
+              (document.querySelector('#banner-form [type="tel"]').value === '' ||
+                document.querySelector('#banner-form [type="text"]').value === '')) {
+              return;
+            }
           }
-          if (target === document.querySelector('#footer_form button[type="submit"]') &&
-            (!document.getElementById('footer_leto_mozaika').checked &&
-              !document.getElementById('footer_leto_schelkovo').checked) ||
-            document.querySelector('#footer_form [type="tel"]').value === '') {
-            return;
+          if (target === document.querySelector('#footer_form button[type="submit"]')) {
+            if ((!document.getElementById('footer_leto_mozaika').checked &&
+                !document.getElementById('footer_leto_schelkovo').checked) ||
+              document.querySelector('#footer_form [type="tel"]').value === '') {
+              return;
+            }
           }
         }
         if (!target.matches('[type="submit"]')) {
