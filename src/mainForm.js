@@ -82,8 +82,10 @@ const mainForm = () => {
         body['card-type'] = data[body['card-type']];
       }
     },
-    popupMessage = (modal, response) => {
+    showModal = (modal) => {
       modal.querySelector('.form-content').innerHTML = `<h4>Подождите</h4><p></p><button class="btn close-btn" style="display: none;">OK</button>`;
+    },
+    popupMessage = (modal, response) => {
       if (response.status !== 200) {
         modal.querySelector('h4').textContent = 'Сожалеем';
         modal.querySelector('p').innerHTML = messageError;
@@ -91,13 +93,13 @@ const mainForm = () => {
         modal.querySelector('h4').textContent = 'Спасибо!';
         modal.querySelector('p').innerHTML = messageSend;
       }
-
       modal.querySelector('button').style.display = 'block';
     };
 
   bannerForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if (document.getElementById('check1').checked) {
+      showModal(thanks);
       readForm(bannerForm, event, (response) => {
         popupMessage(thanks, response);
       });
@@ -109,6 +111,7 @@ const mainForm = () => {
   footerForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if (document.getElementById('footer_leto_mozaika').checked || document.getElementById('footer_leto_schelkovo').checked) {
+      showModal(thanks);
       readForm(footerForm, event, (response) => {
         popupMessage(thanks, response);
       });
@@ -120,6 +123,7 @@ const mainForm = () => {
   modalForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if (document.getElementById('check2').checked) {
+      showModal(visit);
       readForm(modalForm, event, (response) => {
         popupMessage(visit, response);
       });
@@ -131,6 +135,7 @@ const mainForm = () => {
   callForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if (document.getElementById('check').checked) {
+      showModal(callFree);
       readForm(callForm, event, (response) => {
         popupMessage(callFree, response);
       });
@@ -142,6 +147,7 @@ const mainForm = () => {
   cardOrderForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if (document.getElementById('card_check').checked) {
+      showModal(thanks);
       readForm(cardOrderForm, event, (response) => {
         popupMessage(thanks, response);
       }, changeClubData);
