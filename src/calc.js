@@ -22,7 +22,7 @@ const calc = () => {
 
   const calcPrice = (event) => {
     let target = event.target;
-    const promo = cardOrder.querySelector('[name="name"]');
+    const promo = cardOrder.querySelector('[name="promo"]');
 
     if (priceTotal) {
       if (target.matches('[name="club-name"]')) {

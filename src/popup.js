@@ -23,6 +23,13 @@ const popup = () => {
               return;
             }
           }
+          if (target === document.querySelector('#card_order button[type="submit"]')) {
+            if (!document.getElementById('card_check').checked ||
+              (document.querySelector('#card_order [type="tel"]').value === '' ||
+                document.querySelector('#card_order [required][type="text"]').value === '')) {
+              return;
+            }
+          }
         }
         if (!target.matches('[type="submit"]')) {
           event.preventDefault();
