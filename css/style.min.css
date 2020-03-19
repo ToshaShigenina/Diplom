@@ -1577,10 +1577,12 @@ nav.popup-menu .close-menu-btn img {
 }
 
 .services-slider-wrapper {
-  margin-left: 15px;
-  margin-right: 15px;
-  overflow-x: hidden;
   position: relative;
+}
+
+.services-slider-overflow {
+  overflow-x: hidden;
+  margin: 0 20px;
 }
 
 .services-slider {

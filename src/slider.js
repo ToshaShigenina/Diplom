@@ -57,9 +57,9 @@ const slider = () => {
         diffWidth = currentWidthSlides + slider.clientWidth - widthSlider;
       if (diffWidth > 0) {
         currentWidthSlides = ((slideWidth + 12) * (position - 1)) + (slideWidth - diffWidth);
-        position = 0;
+        position = -1;
       } else if (diffWidth === 0) {
-        position = 0;
+        position = -1;
       }
       slider.style.transform = `translateX(-${currentWidthSlides}px)`;
     },
