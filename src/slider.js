@@ -125,7 +125,6 @@ const slider = () => {
 
   addDots(sliderMain, slidesMain);
   addDots(sliderGallery, slidesGallery);
-  addArrows(carouselSliderWrapper);
   addArrows(sliderGallery);
 
   const dotsMain = sliderMain.querySelectorAll('.slider-dots li'),
@@ -134,6 +133,14 @@ const slider = () => {
   sliderMain.addEventListener('click', (event) => {
     changeSlide(event, slidesMain, dotsMain);
   });
+  sliderGallery.addEventListener('click', (event) => {
+    changeSlide(event, slidesGallery, dotsGallery);
+  });
+
+  startSlider(slidesMain, dotsMain);
+  startSlider(slidesGallery, dotsGallery);
+
+  addArrows(carouselSliderWrapper);
 
   carouselSliderWrapper.addEventListener('mouseover', () => {
     stopSlider();
@@ -153,13 +160,7 @@ const slider = () => {
     }
   });
 
-  sliderGallery.addEventListener('click', (event) => {
-    changeSlide(event, slidesGallery, dotsGallery);
-  });
-
-  startSlider(slidesMain, dotsMain);
   startCarouselSlider(carouselSlider);
-  startSlider(slidesGallery, dotsGallery);
 };
 
 export default slider;
