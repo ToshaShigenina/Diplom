@@ -1,6 +1,8 @@
 const popup = () => {
   const body = document.body;
-  let popup = null;
+  let popup = null,
+    popupForm = null,
+    popupID = '';
 
   body.addEventListener('click', (event) => {
     let target = event.target;
@@ -8,7 +10,8 @@ const popup = () => {
     if (!popup) {
       target = target.closest('[data-popup]');
       if (target) {
-        if (target.dataset.popup === '#thanks') {
+        popupID = target.dataset.popup;
+        if (popupID === '#thanks') {
           if (target === document.querySelector('#banner-form button[type="submit"]')) {
             if (!document.getElementById('check1').checked ||
               (document.querySelector('#banner-form [type="tel"]').value === '' ||
@@ -33,11 +36,12 @@ const popup = () => {
         }
         if (!target.matches('[type="submit"]')) {
           event.preventDefault();
+          popupForm = document.querySelector(popupID).innerHTML;
         }
         if (document.querySelector('[data-popup="#gift"]')) {
           document.querySelector('[data-popup="#gift"]').style.display = 'none';
         }
-        popup = document.querySelector(target.dataset.popup);
+        popup = document.querySelector(popupID);
         popup.style.display = 'block';
       }
       return;
@@ -50,7 +54,11 @@ const popup = () => {
         document.querySelector('[data-popup="#gift"]').remove();
       }
       popup.removeAttribute('style');
+      if (popupForm) {
+        document.querySelector(popupID).innerHTML = popupForm;
+      }
       popup = null;
+      popupForm = null;
     }
   });
 };
