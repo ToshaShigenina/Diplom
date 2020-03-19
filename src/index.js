@@ -8,7 +8,6 @@ import slider from './slider.js';
 import calc from './calc.js';
 import mainForm from './mainForm.js';
 import checkInput from './checkInput.js';
-import carousel from './carousel.js';
 
 showClubList();
 
@@ -25,5 +24,3 @@ calc();
 mainForm();
 
 checkInput();
-
-carousel();

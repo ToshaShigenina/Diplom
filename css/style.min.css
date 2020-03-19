@@ -1580,6 +1580,7 @@ nav.popup-menu .close-menu-btn img {
   margin-left: 15px;
   margin-right: 15px;
   overflow-x: hidden;
+  position: relative;
 }
 
 .services-slider {

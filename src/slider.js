@@ -2,7 +2,15 @@ const slider = () => {
   const sliderMain = document.querySelector('.main-slider'),
     slidesMain = sliderMain.querySelectorAll('.slide'),
     sliderGallery = document.querySelector('.gallery-slider'),
-    slidesGallery = sliderGallery.querySelectorAll('.slide');
+    slidesGallery = sliderGallery.querySelectorAll('.slide'),
+    carouselSlider = document.querySelector('.services-slider'),
+    carouselSliderWrapper = document.querySelector('.services-slider-wrapper'),
+    slides = carouselSlider.querySelectorAll('.slide'),
+    slideWidth = slides[0].clientWidth,
+    widthSlider = (slideWidth + 12) * 10;
+
+  let position = 0,
+    interval;
 
   const currentSlide = (slides) => {
       let currentSlide = 0;
@@ -43,6 +51,27 @@ const slider = () => {
     nextSlide = (elem, index, classStr) => {
       elem[index].classList.add(classStr);
     },
+    nextCarouselSlide = (slider) => {
+      position++;
+      let currentWidthSlides = (slideWidth + 12) * position,
+        diffWidth = currentWidthSlides + slider.clientWidth - widthSlider;
+      if (diffWidth > 0) {
+        currentWidthSlides = ((slideWidth + 12) * (position - 1)) + (slideWidth - diffWidth);
+        position = 0;
+      } else if (diffWidth === 0) {
+        position = 0;
+      }
+      slider.style.transform = `translateX(-${currentWidthSlides}px)`;
+    },
+    prevCarouselSlide = (slider) => {
+      position--;
+      let currentWidthSlides = (slideWidth + 12) * position;
+      if (position < 0) {
+        currentWidthSlides = 0;
+        position = 0;
+      }
+      slider.style.transform = `translateX(-${currentWidthSlides}px)`;
+    },
     playSlide = (slides, dots) => {
       let indexActive = currentSlide(slides);
       prevSlide(slides, indexActive, 'slide-active');
@@ -56,6 +85,12 @@ const slider = () => {
     },
     startSlider = (slides, dots) => {
       setInterval(playSlide, 2500, slides, dots);
+    },
+    startCarouselSlider = (slider) => {
+      interval = setInterval(nextCarouselSlide, 2500, slider);
+    },
+    stopSlider = () => {
+      clearInterval(interval);
     },
     changeSlide = (event, slides, dots) => {
       event.preventDefault();
@@ -90,6 +125,7 @@ const slider = () => {
 
   addDots(sliderMain, slidesMain);
   addDots(sliderGallery, slidesGallery);
+  addArrows(carouselSliderWrapper);
   addArrows(sliderGallery);
 
   const dotsMain = sliderMain.querySelectorAll('.slider-dots li'),
@@ -99,11 +135,30 @@ const slider = () => {
     changeSlide(event, slidesMain, dotsMain);
   });
 
+  carouselSliderWrapper.addEventListener('mouseover', () => {
+    stopSlider();
+  });
+  carouselSliderWrapper.addEventListener('mouseout', () => {
+    startCarouselSlider(carouselSlider);
+  });
+  carouselSliderWrapper.addEventListener('click', (event) => {
+    event.preventDefault();
+    let target = event.target.closest('.slider-arrow');
+
+    if (target.matches('.next')) {
+      nextCarouselSlide(carouselSlider);
+    }
+    if (target.matches('.prev')) {
+      prevCarouselSlide(carouselSlider);
+    }
+  });
+
   sliderGallery.addEventListener('click', (event) => {
     changeSlide(event, slidesGallery, dotsGallery);
   });
 
   startSlider(slidesMain, dotsMain);
+  startCarouselSlider(carouselSlider);
   startSlider(slidesGallery, dotsGallery);
 };
 
