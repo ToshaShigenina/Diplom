@@ -7,7 +7,7 @@ const carousel = () => {
 
   let position = 1;
 
-  const nextSlider = (slider) => {
+  const nextSlide = (slider) => {
       position++;
       let currentWidthSlides = (slideWidth + 12) * position,
         diffWidth = currentWidthSlides + slider.clientWidth - widthSlider;
@@ -19,7 +19,7 @@ const carousel = () => {
       }
       slider.style.transform = `translateX(-${currentWidthSlides}px)`;
     },
-    prevSlider = (slider) => {
+    prevSlide = (slider) => {
       position--;
       let currentWidthSlides = (slideWidth + 12) * position,
         diffWidth = currentWidthSlides + slider.clientWidth - widthSlider;
@@ -51,7 +51,7 @@ const carousel = () => {
     let target = event.target;
 
     if (target.matches('.next')) {
-      nextSlider(carouselSlider);
+      nextSlide(carouselSlider);
     }
     /*if (target.matches('.prev')) {
       prevSlider(carouselSlider);

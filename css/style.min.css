@@ -1627,6 +1627,34 @@ nav.popup-menu .close-menu-btn img {
   margin: 0 auto
 }
 
+.services-slider-wrapper .slider-arrow {
+  position: absolute;
+  top: 75px;
+  margin-top: -18px;
+  z-index: 100;
+  cursor: pointer
+}
+
+.services-slider-wrapper .slider-arrow span {
+  display: block;
+  width: 36px;
+  height: 37px;
+  background-color: #f4c71b;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 11px
+}
+
+.services-slider-wrapper .slider-arrow.prev {
+  left: 2px
+}
+
+.services-slider-wrapper .slider-arrow.next {
+  right: 2px
+}
+
+/*
+
 .services-slider .slider-arrow {
   position: absolute;
   top: 75px;
@@ -1652,6 +1680,14 @@ nav.popup-menu .close-menu-btn img {
 .services-slider .slider-arrow.next {
   right: 2px
 }
+*/
+
+
+
+
+
+
+
 
 #gallery {
   background-color: #fff
